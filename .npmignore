@@ -1,0 +1,12 @@
+node_modules/
+coverage/
+test/
+doc/
+tmp/
+jsdoc.json
+Makefile
+.**
+*.tgz
+*.log
+.nyc_output/
+examples/
