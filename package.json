@@ -17,16 +17,18 @@
   "license": "MIT",
   "author": "commenthol <commenthol@gmail.com>",
   "main": "index.js",
+  "typings": "types",
   "directories": {
     "example": "examples",
     "test": "test"
   },
   "scripts": {
     "all": "npm run clean && npm run lint && npm test",
+    "build:tsc": "tsc --build types; find types -iname '*.js' -exec rm '{}' \\;",
     "clean": "rimraf coverage .nyc_output",
-    "clean:all": "npm run clean && rimraf node_modules *.tgz",
+    "clean:all": "rimraf node_modules && npm run clean",
     "coverage": "nyc -r text -r html npm test",
-    "docs": "jsdoc -d docs -c jsdoc.json index.js",
+    "doc": "jsdoc -d doc -c jsdoc.json index.js",
     "lint": "eslint --fix \"**/*.js\"",
     "prepublishOnly": "npm run all",
     "test": "mocha"
@@ -54,7 +56,8 @@
     "nyc": "^14.1.1",
     "rimraf": "^3.0.0",
     "shelljs": "^0.8.3",
-    "streamss": "^2.0.0-0"
+    "streamss": "^2.0.0",
+    "typescript": "^3.7.2"
   },
   "engines": {
     "node": ">=8.0.0"
