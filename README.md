@@ -10,7 +10,7 @@ The main stream can be piped as well.
 
 ## Install
 
-		npm i -S streamss-fork
+    npm i -S streamss-fork
 
 ## Example
 
