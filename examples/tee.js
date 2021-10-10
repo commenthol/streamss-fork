@@ -1,3 +1,5 @@
+/* eslint-disable node/no-path-concat */
+
 const fs = require('fs')
 const { fork } = require('..')
 

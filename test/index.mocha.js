@@ -54,8 +54,11 @@ describe('#fork', function () {
     const piped = through(
       function () {},
       function flush () {
-        assert.deepStrictEqual(order, [1, 2, 3])
-        done()
+        // with node >= 14 the last pipe is flushed first
+        setTimeout(() => {
+          assert.deepStrictEqual(order, [1, 2, 3])
+          done()
+        })
       }
     )
 
@@ -72,8 +75,11 @@ describe('#fork', function () {
     const piped = through(
       function () {},
       function flush () {
-        assert.deepStrictEqual(order, [1, 2])
-        done()
+        // with node >= 14 the last pipe is flushed first
+        setTimeout(() => {
+          assert.deepStrictEqual(order, [1, 2])
+          done()
+        })
       }
     )
 
@@ -83,7 +89,7 @@ describe('#fork', function () {
   it('shall fork with pipe to fs streams', function (done) {
     const inp = abc(10) + '\n'
     const stream = new ReadBuffer(inp)
-    const dirname = `${__dirname}/tmp`
+    const dirname = path.resolve(__dirname, 'tmp')
     const filename = `${dirname}/fork`
 
     rm('-rf', dirname)
